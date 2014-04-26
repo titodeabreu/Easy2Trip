@@ -5,7 +5,6 @@
 *.pydevproject
 .project
 .metadata
-easy2trip-ear/
 bin/
 tmp/
 *.tmp
