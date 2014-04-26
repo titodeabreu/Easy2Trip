@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:p="http://primefaces.org/ui"
+   template="/WEB-INF/templates/default.xhtml">
+   <ui:define name="content">
+       <h:form id="reg">
+        
+         <table>
+            <tr>
+               <th style="text-align: right;"><h:outputLabel
+                     for="name" value="Name:" /></th>
+               <td><p:inputText id="name" value="#{memberMB.member.name}" />
+                  <h:message for="name" errorClass="invalid" /></td>
+            </tr>
+            <tr>
+               <th style="text-align: right;"><h:outputLabel
+                     for="email" value="Email:" /></th>
+               <td><p:inputText id="email"
+                     value="#{memberMB.member.email}" /> <h:message
+                     for="email" errorClass="invalid" /></td>
+            </tr>
+            <tr>
+               <th style="text-align: right;"><h:outputLabel
+                     for="phoneNumber" value="Phone #:" /></th>
+               <td><p:inputText id="phoneNumber"
+                     value="#{memberMB.member.phoneNumber}" /> <h:message
+                     for="phoneNumber" errorClass="invalid" /></td>
+            </tr>
+         </table>
+         <p>
+            <p:commandButton id="register"
+               action="#{memberMB.register}" value="Register" />
+         </p>
+      </h:form>
+      
+   </ui:define>
+</ui:composition>
