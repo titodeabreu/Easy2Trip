@@ -34,15 +34,15 @@
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-ear-plugin</artifactId>
-            <version>2.6</version>
+            <version>2.9</version>
             <configuration>
                <!-- Tell Maven we are using Java EE 6 -->
-               <version>7</version>
-               <!-- Use Java EE ear libraries as needed. Java EE ear libraries 
+             <!--   <version>6</version>
+               Use Java EE ear libraries as needed. Java EE ear libraries 
                   are in easy way to package any libraries needed in the ear, and automatically 
-                  have any modules (EJB-JARs and WARs) use them -->
+                  have any modules (EJB-JARs and WARs) use them
                <defaultLibBundleDir>lib</defaultLibBundleDir>
-               <modules>
+              -->  <modules>
                   <!-- Register our War as a web module, and set the context 
                      root -->
                   <webModule>

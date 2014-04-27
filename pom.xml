@@ -11,6 +11,7 @@
    <modules>
       <module>easy2trip-ejb</module>
       <module>easy2trip-web</module>
+	  <module>easy2trip-domain</module>
       <module>easy2trip-ear</module>
    </modules>
 
@@ -29,7 +30,12 @@
             <version>0.0.1-SNAPSHOT</version>
             <type>ejb</type>
          </dependency>
-
+		<dependency>
+            <groupId>easy2trip</groupId>
+            <artifactId>easy2trip-domain</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <type>jar</type>
+         </dependency>
          <!-- Define the version of the WAR so that we don't need to repeat 
             ourselves in every module -->
          <dependency>

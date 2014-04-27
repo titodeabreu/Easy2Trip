@@ -6,6 +6,7 @@
 .project
 .metadata
 bin/
+easy2trip-ear/
 tmp/
 *.tmp
 *.bak
