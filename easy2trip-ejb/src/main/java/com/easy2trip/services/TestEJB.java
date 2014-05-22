@@ -6,7 +6,7 @@ import com.easy2trip.model.Member;
 
 
 @Stateless
-public class TestEJB implements TestRemote{
+public class TestEJB implements TestRemote, TestLocal{
 
 	public Member go(Member m){
 		System.out.println("In the TestEJB...");

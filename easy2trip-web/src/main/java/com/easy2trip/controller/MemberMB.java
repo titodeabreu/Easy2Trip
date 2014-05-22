@@ -13,13 +13,15 @@ public class MemberMB {
 	public Member member = new Member();
 	
 	@EJB
-	public TestRemote ejb;
-
+	public TestRemote ejbRemote;
+	@EJB
+	public TestLocal ejblocal;
 	
 	public String register(){
-		ejb.go(new Member());
-				
-		System.out.println("In the MB...2");
+		ejbRemote.go(new Member());
+		ejblocal.go(null);
+		
+		System.out.println("In the MB... 3");
 		return null;
 	}
 
