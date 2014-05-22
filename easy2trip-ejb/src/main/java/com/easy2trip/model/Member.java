@@ -28,18 +28,18 @@ public class Member implements Serializable {
    private Long id;
 
    @NotNull
-   @Size(min = 1, max = 25)
-   @Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+   /*@Size(min = 1, max = 25)
+   @Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")*/
    private String name;
-
+/*
    @NotNull
    @NotEmpty
-   @Email
+   @Email*/
    private String email;
-
+/*
    @NotNull
    @Size(min = 10, max = 12)
-   @Digits(fraction = 0, integer = 12)
+   @Digits(fraction = 0, integer = 12)*/
    @Column(name = "phone_number")
    private String phoneNumber;
 

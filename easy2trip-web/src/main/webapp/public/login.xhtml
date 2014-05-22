@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputStylesheet library="css" name="main.css" />
+</h:head>
+<h:body>
+	<p:growl id="growgeral" showDetail="true" showSummary="false"
+		globalOnly="true" />
+	<p:panel header="#{msgs.header_login}" style="width:330px"
+		rendered="#{sessionMB.user  == null}">
+		<p:growl id="growl" showDetail="true" showSummary="false" />
+		<h:form>
+			<h:panelGrid columns="2">
+
+				<h:outputLabel for="uname" value="#{msgs.label_campo_login}" />
+				<p:inputText id="uname" value="#{usuarioMB.username}"
+					required="true"
+					requiredMessage="#{msgs.msg_campo_loginobrigatorio}" />
+				<h:outputLabel for="pass" value="#{msgs.label_campo_senha}" />
+				<p:password id="pass" value="#{usuarioMB.password}" required="true"
+					requiredMessage="#{msgs.msg_campo_senhaobrigatoria}" />
+				<h:outputText />
+				<h:outputText />
+				<h:outputText />
+				<p:commandButton id="login" value="Login" update=":growl"
+					action="#{usuarioMB.efetuarLogin()}" />
+
+			</h:panelGrid>
+		</h:form>
+
+		<h:form>
+			<p:commandLink onclick="dialog.show();"
+				value="#{msgs.botao_perdeuasenha}"></p:commandLink> | 
+				 	<p:commandLink action="#{usuarioMB.novoRegistro()}"
+				value="#{msgs.botao_registrarse}" />
+		</h:form>
+	</p:panel>
+
+	<!-- Dialog de recuperação de senha -->
+	<p:dialog widgetVar="dialog" modal="true"
+		header="#{msgs.header_recuperacaodesenha}" resizable="false">
+
+		<h:form id="formrecuperar">
+
+			<p:focus />
+			<h:panelGrid columns="2">
+
+				<h:outputLabel value="#{msgs.label_campo_email}" />
+				<p:inputText id="email"
+					value="#{usuarioMB.usuarioEmRecuperacao.email}" maxlength="100"
+					required="true"
+					requiredMessage="#{msgs.msg_campo_emailobrigatorio}"
+					validatorMessage="#{msgs.msg_campo_emailinvalido}">
+					<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
+				</p:inputText>
+
+				<h:outputLabel value="#{msgs.label_campo_dtnascimento}" />
+				<p:calendar id="Nascimento" navigator="true" yearRange="c-90:c"
+					value="#{usuarioMB.usuarioEmRecuperacao.nascimento}"
+					required="true"
+					requiredMessage="#{msgs.msg_dtnascimentoobrigatorio}" />
+			</h:panelGrid>
+			<br />
+			<p:commandButton value="#{msgs.botao_enviarsenha}"
+				icon="ui-icon-check" action="#{usuarioMB.recuperaSenha()}"
+				update="formrecuperar" />
+			<p:commandButton value="#{msgs.label_fechar}"
+				onclick="dialog.hide();" />
+			<p:messages autoUpdate="true" showDetail="true" showSummary="false"
+				closable="true"></p:messages>
+
+		</h:form>
+
+	</p:dialog>
+		<p:panel rendered="#{sessionMB.user  != null}">
+			<h:form>
+				<p:commandLink action="#{sessionMB.logOut()}" value="sair" ajax="false" />
+			</h:form>
+		</p:panel>
+	<br />
+</h:body>
+</html>

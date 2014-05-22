@@ -6,8 +6,18 @@
    xmlns:p="http://primefaces.org/ui"
    template="/WEB-INF/templates/default.xhtml">
    <ui:define name="content">
+       
+       <h:form>
+			 	<p:commandLink action="#{usuarioMB.novoRegistro()}"
+				value="#{msgs.botao_registrarse}" />
+		</h:form>
+		  <h:form>
+			 	<p:commandLink action="#{usuarioMB.login()}"
+				value="#{msgs.botao_login}" />
+		</h:form>
+		<br/>
+		
        <h:form id="reg">
-        
          <table>
             <tr>
                <th style="text-align: right;"><h:outputLabel
@@ -32,7 +42,7 @@
          </table>
          <p>
             <p:commandButton id="register"
-               action="#{memberMB.register}" value="Register" />
+               action="#{memberMB.register}" value="Testar EJB" />
          </p>
       </h:form>
       

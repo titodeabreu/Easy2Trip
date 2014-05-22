@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jboss-web>
+	<!-- URL to access the web module -->
+	<context-root>easy2trip-web</context-root>
+
+	<!-- Realm that will be used -->
+	<security-domain>java:/jaas/d2nJSFRealm</security-domain>
+	
+	
+	<!-- 
+		=================================================================================
+		A seguinte configuração deve constar no arquivo standalone.xml do JBoss 
+		para que a autenticação com JAAS e segurança funcionem.
+		Observar a opção dsJndName que deve ter o nome do JNDI configurado
+		=====================================================================================
+		
+		<subsystem xmlns="urn:jboss:domain:security:1.0">
+            <security-domains>
+                <security-domain name="d2nJSFRealm" cache-type="default">
+                    <authentication>
+                        <login-module code="org.jboss.security.auth.spi.DatabaseServerLoginModule" flag="required">
+                            <module-option name="dsJndiName" value="d2nDS"/>
+                            <module-option name="principalsQuery" value="select password from usuario where login=? and ativo=TRUE"/>
+                            <module-option name="rolesQuery" value="select role, 'Roles' from usuario u where u.login=?"/>
+                        </login-module>
+                    </authentication>
+                </security-domain>
+                <security-domain name="other" cache-type="default">
+                    <authentication>
+                        <login-module code="Disabled" flag="required"/>
+                    </authentication>
+                </security-domain>
+            </security-domains>
+        </subsystem>
+	
+	 -->
+	 
+	 <!-- 
+	 	=================================================================================
+	 	Exemplo de JNDI que deve esta no standalone.xml do JBoss 7.0 e 
+	 	para que as configurações de segurança acima funcionem
+	 	=================================================================================
+	 	
+	 	<datasource jndi-name="d2nDS" pool-name="d2nDS_Pool" enabled="true" jta="true" use-java-context="true" use-ccm="true">
+                    <connection-url>
+                        jdbc:postgresql://localhost:5432/dreams2note
+                    </connection-url>
+                    <driver-class>
+                        org.postgresql.Driver
+                    </driver-class>
+                    <driver>
+                        postgresql-jdbc4
+                    </driver>
+                    <pool>
+                        <min-pool-size>
+                            2
+                        </min-pool-size>
+                        <max-pool-size>
+                            20
+                        </max-pool-size>
+                        <prefill>
+                            true
+                        </prefill>
+                        <use-strict-min>
+                            false
+                        </use-strict-min>
+                        <flush-strategy>
+                            FailingConnectionOnly
+                        </flush-strategy>
+                    </pool>
+                    <security>
+                        <user-name>
+                            postgres
+                        </user-name>
+                        <password>
+                            postgres
+                        </password>
+                    </security>
+                    <validation>
+                        <check-valid-connection-sql>
+                            SELECT 1
+                        </check-valid-connection-sql>
+                        <validate-on-match>
+                            false
+                        </validate-on-match>
+                        <background-validation>
+                            false
+                        </background-validation>
+                        <use-fast-fail>
+                            false
+                        </use-fast-fail>
+                    </validation>
+                </datasource>	 
+	  -->
+</jboss-web>

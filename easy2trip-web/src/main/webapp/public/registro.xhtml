@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputStylesheet library="css" name="main.css" />
+</h:head>
+<h:body>
+	<div align="center">
+		<p:panel id="panel" header="Registro de Nova Conta"
+			style="width:450px" rendered="#{sessionMB.user  == null}">
+			<h:form id="formregistro">
+				<p:growl id="growl" showDetail="true" showSummary="false" />
+				<p:focus />
+				<h:panelGrid columns="2" style="aling: center">
+
+					<h:outputLabel value="#{msgs.label_campo_login}" />
+					<p:inputText style="background: #1B9DBC;color: white" id="login"
+						required="true"
+						requiredMessage="#{msgs.msg_campo_loginobrigatorio}"
+						value="#{usuarioMB.usuario.login}" maxlength="50"
+						validatorMessage="#{msgs.msg_logininvalido}">
+						<f:validateRegex pattern="[a-z0-9\-\_\.\@]+" />
+					</p:inputText>
+
+					<h:outputLabel value="#{msgs.label_campo_email}" />
+					<p:inputText id="email" value="#{usuarioMB.usuario.email}"
+						maxlength="100" required="true"
+						requiredMessage="#{msgs.msg_campo_emailobrigatorio}"
+						validatorMessage="#{msgs.msg_campo_emailinvalido}">
+						<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
+					</p:inputText>
+
+					<h:outputLabel value="#{msgs.label_campo_senha}" />
+					<p:password id="senha" value="#{usuarioMB.usuario.password}"
+						required="true" feedback="true"
+						requiredMessage="#{msgs.msg_campo_senhaobrigatoria}"
+						maxlength="20" />
+					<h:outputLabel value="#{msgs.label_campo_nome}" />
+					<p:inputText id="nome" value="#{usuarioMB.usuario.nome}"
+						maxlength="255" />
+
+					<h:outputLabel value="#{msgs.label_campo_dtnascimento}" />
+					<p:calendar id="Nascimento" navigator="true"
+						converterMessage="#{msgs.msg_campo_dtnascimentoinvalido}"
+						yearRange="c-90:c" value="#{usuarioMB.usuario.nascimento}" />
+
+
+				</h:panelGrid>
+				<br />
+				<p:commandButton id="bcadastrar"
+					value="#{msgs.botao_efetuarcadastro}" icon="ui-icon-circle-check"
+					action="#{usuarioMB.salvar}" update="formregistro,growl" />
+
+			</h:form>
+		</p:panel>
+		<p:panel rendered="#{sessionMB.user  != null}">
+			<h:form>
+				<p:commandLink action="#{sessionMB.logOut()}" value="sair"/>
+			</h:form>
+		</p:panel>
+	</div>
+</h:body>
+</html>

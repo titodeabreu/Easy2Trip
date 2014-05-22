@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<div id="atualizaperfil">
+			<p:panel id="panelimagem" style="width:500px">
+				<div align="left">
+					<h:form id="formimagem">
+						<h:panelGrid columns="2">
+							<p:graphicImage id="imagem" cache="false"
+								value="#{usuarioMB.pathFotoPerfil}.JPG" width="150"
+								height="175" />
+							<p:column>
+								<p:fileUpload style="width:200px" id="fileupload"
+									label="#{msgs.botao_definirimagem}"
+									fileUploadListener="#{usuarioMB.handleFileUpload}"
+									auto="true" allowTypes="/(\.|\/)(jpe?g|jpg)$/"
+									showButtons="false"
+									invalidFileMessage="#{msgs.msg_imageminvalida}"
+									update="formimagem,imagem,fileupload,:formregistro">
+								</p:fileUpload>
+							</p:column>
+						</h:panelGrid>
+					</h:form>
+				</div>
+			</p:panel>
+			<p:panel header="#{msgs.label_meusdados}" style="width:500px"
+				rendered="#{sessionMB.user  != null}">
+				<h:form id="formregistro">
+					<p:growl id="growl" showDetail="true" showSummary="false"/>
+					<p:focus/>
+					<h:inputHidden value="#{usuarioMB.usuario.id}" />
+					<h:inputHidden value="#{usuarioMB.usuario.role}" />
+					<h:inputHidden value="#{usuarioMB.usuario.ativo}" />
+					<h:inputHidden value="#{usuarioMB.usuario.pathFoto}" />
+					<h:inputHidden value="#{usuarioMB.usuario.temFoto}" />
+
+					<h:panelGrid columns="2">
+						<h:outputLabel value="#{msgs.label_campobiografia}" />
+						<p:inputTextarea cols="22" rows="6" id="bio" autoResize="false"
+							value="#{usuarioMB.usuario.biografia}" maxlength="255" />
+
+						<h:outputLabel value="#{msgs.label_campo_nome}" />
+						<p:inputText id="nome" value="#{usuarioMB.usuario.nome}"
+							maxlength="255" />
+
+						<h:outputLabel value="#{msgs.label_campo_login}" />
+						<p:inputText id="login" required="true"
+							requiredMessage="#{msgs.msg_campo_loginobrigatorio}"
+							value="#{usuarioMB.usuario.login}" maxlength="50" />
+
+						<h:outputLabel value="#{msgs.label_campo_email}" />
+						<p:inputText id="email" value="#{usuarioMB.usuario.email}"
+							maxlength="100" required="true"
+							requiredMessage="#{msgs.msg_campo_emailobrigatorio}"
+							validatorMessage="#{msgs.msg_campo_emailinvalido}">
+							<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
+						</p:inputText>
+
+						<h:outputLabel value="#{msgs.label_campo_dtnascimento}" />
+						<p:calendar id="Nascimento" navigator="true" yearRange="c-90:c"
+							value="#{usuarioMB.usuario.nascimento}" />
+
+						<h:outputLabel value="#{msgs.label_campo_senha}" />
+						<p:password id="senha" value="#{usuarioMB.usuario.password}"
+							feedback="true"
+							maxlength="20" />
+
+						<h:outputLabel value="#{msgs.label_campo_idioma}" />
+						<p:selectOneMenu value="#{usuarioMB.usuario.idioma}"
+							style="width: 200px" required="true"
+							requiredMessage="#{msgs.msg_campo_idiomabrigatorio}">
+							<f:selectItem itemLabel="#{msgs.label_campo_idioma_valordefault}"
+								itemValue="" />
+							<f:selectItems value="#{usuarioMB.idiomas}" />
+						</p:selectOneMenu>
+					
+					</h:panelGrid>
+					<p:commandButton value="#{msgs.label_atualizardados}"
+						icon="ui-icon-refresh" action="#{usuarioMB.salvar}" update="growl,:formimagem,:formregistro"/>
+					<p:commandButton value="#{msgs.botao_desativarconta}"
+						icon="ui-icon-close" onclick="dialog.show();"></p:commandButton>
+
+
+					<p:dialog widgetVar="dialog" modal="true"
+						header="#{msgs.header_desativarconta}"
+						style="text-align:center">
+						<p:growl showDetail="true" showSummary="false" />
+						<h:outputText value="#{msgs.msg_confirmacaodesativacaoconta}"></h:outputText>
+						<br />
+						<br />
+						<p:commandButton action="#{usuarioMB.desativar}" ajax="false"
+							value="#{msgs.botao_desativarconta}"
+							update="formregistro,growl,:formtopo" />
+						<p:commandButton value="#{msgs.label_nao}" onclick="dialog.hide();" />
+
+					</p:dialog>
+				</h:form>
+			</p:panel>
+		</div>
+	</h:body>
+</html>

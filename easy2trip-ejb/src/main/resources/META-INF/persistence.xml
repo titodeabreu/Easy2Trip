@@ -7,10 +7,13 @@
 	<persistence-unit name="easy2tripPU">
 		<jta-data-source>d2nDS</jta-data-source>
 		<class>com.easy2trip.model.Member</class>
-				
+		<class>com.easy2trip.model.Usuario</class>
+
 		<properties>
-		<property name="hibernate.hbm2ddl.auto" value="update" />
-         <property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.generate_statistics" value="true" />
 		</properties>
 	</persistence-unit>
 </persistence>
