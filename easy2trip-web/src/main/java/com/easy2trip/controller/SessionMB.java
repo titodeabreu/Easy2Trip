@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import com.easy2trip.model.Usuario;
@@ -23,7 +24,7 @@ import com.easy2trip.services.UsuarioLocal;
 public class SessionMB {
 	private Usuario user;
 	
-	@EJB
+	@Inject
 	private UsuarioLocal userFacade;
 	private Locale	      localizacao	  = null;
 	

@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.*;
 import javax.faces.context.*;
 import javax.faces.model.SelectItem;
+import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -33,8 +34,9 @@ public class UsuarioMB extends AbstractMB{
 
 	private static final long serialVersionUID = 1L;
 		
-	@EJB
+	@Inject
 	private UsuarioRemote usuarioEJB;
+	
 	private Usuario	    usuario	= new Usuario();
 	private Usuario 	usuarioEmRecuperacao = new Usuario();
 	private List<SelectItem> idiomas = new ArrayList<SelectItem>();
