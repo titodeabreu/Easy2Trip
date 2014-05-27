@@ -5,8 +5,8 @@
 	<context-root>easy2trip-web</context-root>
 
 	<!-- Realm that will be used -->
-	<security-domain>java:/jaas/d2nJSFRealm</security-domain>
 	
+	<security-domain>java:/jaas/easy2tripRealm</security-domain>
 	
 	<!-- 
 		=================================================================================
